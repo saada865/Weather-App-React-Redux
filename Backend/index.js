@@ -10,9 +10,10 @@ app.use(
   })
 );
 
-app.get("/weather", async (req, res) => {
+app.get("/weather/:city", async (req, res) => {
+  const city = req.params.city;
   const apiResponse = await fetch(
-    "http://api.weatherapi.com/v1/current.json?key=23f3938e20e046b0999223838231412&q=London"
+    `http://api.weatherapi.com/v1/current.json?key=23f3938e20e046b0999223838231412&q=${city}`
   );
   const data = await apiResponse.json();
   const valTemp = data.current.temp_c;

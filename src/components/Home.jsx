@@ -4,19 +4,25 @@ import { useState } from "react";
 
 const Home = () => {
   const [response, setResponse] = useState("");
+  const [city, setCity] = useState("");
+
   const caller = async () => {
     // axios({
     //   method: "GET",
     //   url: "localhost//:4000/weather",
     // });
     try {
-      const r1 = await fetch(`http://localhost:4000/weather`);
+      const r1 = await fetch(`http://localhost:4000/weather/${city}`);
       const data = await r1.json();
       setResponse(data.current.temp_c);
       console.log(data);
     } catch (error) {
       console.log("ERORR IS FRONTEND API REQUEST ", error);
     }
+  };
+
+  const handleInput = (event) => {
+    setCity(event.target.value);
   };
 
   return (
@@ -30,6 +36,7 @@ const Home = () => {
         <h1 className=" text-white">Enter in your city</h1>
         <input
           type="text"
+          onChange={handleInput}
           className="bg-gray-500 border-r-gray-200 mx-2 rounded-md"
         />
         <button className=" bg-red-600" onClick={caller}>
