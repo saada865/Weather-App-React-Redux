@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { customeReducer } from "./Reducers";
+import cityReducer from "./citySlice";
 
 const store = configureStore({
   reducer: {
-    custom: customeReducer,
+    city: cityReducer,
   },
 });
+
+export default store;

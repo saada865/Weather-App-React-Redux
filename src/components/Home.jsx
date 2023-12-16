@@ -1,10 +1,19 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setCity } from "../citySlice";
 
 const Home = () => {
   const [response, setResponse] = useState("");
-  const [city, setCity] = useState("");
+  // const [city, setCity] = useState("");
+
+  const city = useSelector((state) => state.city.city);
+  const dispatch = useDispatch();
+
+  const handleInput = (event) => {
+    dispatch(setCity(event.target.value));
+  };
 
   const caller = async () => {
     // axios({
@@ -19,10 +28,6 @@ const Home = () => {
     } catch (error) {
       console.log("ERORR IS FRONTEND API REQUEST ", error);
     }
-  };
-
-  const handleInput = (event) => {
-    setCity(event.target.value);
   };
 
   return (
