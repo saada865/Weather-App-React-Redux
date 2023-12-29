@@ -1,3 +1,5 @@
+// here iam using slice which has been very helpful.
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const citySlice = createSlice({
